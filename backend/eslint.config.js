@@ -8,30 +8,30 @@ const js = require("@eslint/js");
 const { FlatCompat } = require("@eslint/eslintrc");
 
 const compat = new FlatCompat({
-  baseDirectory: __dirname,
-  recommendedConfig: js.configs.recommended,
-  allConfig: js.configs.all,
+    baseDirectory: __dirname,
+    recommendedConfig: js.configs.recommended,
+    allConfig: js.configs.all,
 });
 
 module.exports = defineConfig([
-  {
-    languageOptions: {
-      globals: {
-        ...globals.node,
-      },
+    {
+        languageOptions: {
+            globals: {
+                ...globals.node,
+            },
 
-      parser: tsParser,
-    },
+            parser: tsParser,
+        },
 
-    extends: compat.extends(
-      "plugin:@typescript-eslint/recommended",
-      "eslint:recommended"
-    ),
-    rules: {
-      "@typescript-eslint/no-require-imports": "off",
+        extends: compat.extends(
+            "plugin:@typescript-eslint/recommended",
+            "eslint:recommended"
+        ),
+        rules: {
+            "@typescript-eslint/no-require-imports": "off",
+        },
+        plugins: {
+            "@typescript-eslint": typescriptEslint,
+        },
     },
-    plugins: {
-      "@typescript-eslint": typescriptEslint,
-    },
-  },
 ]);
